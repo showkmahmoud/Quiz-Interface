@@ -18,3 +18,12 @@
     border: 1px solid #ddd;
     border-radius: 25px;
   }
+  .main-header {
+    display: inline-block;
+    text-align: center;
+    color: var(--primary-color);
+    padding: 16px 0;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+  }

@@ -1,3 +1,11 @@
-.quize-Data-wrapper{
-    
+.data-label{
+    color: var(--primary-color);
+}
+.data{
+    color: var(--text);
+}
+
+.custom-w{
+    width: 20%;
+    text-align: left;
 }
