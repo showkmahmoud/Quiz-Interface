@@ -10,6 +10,9 @@ const QuizzesTable: React.FC<IQuizzesTableProps> = ({ data }) => {
   const editQuiz = (id:number) =>{
     navigte(`/quizzes/${id}`);
   }
+  const displayQuiz = (id:number) =>{
+    navigte(`/display/${id}`);
+  }
   return (
     <Table className="main-table" responsive striped>
       <thead>
@@ -34,7 +37,7 @@ const QuizzesTable: React.FC<IQuizzesTableProps> = ({ data }) => {
             </td>
             <td className="action">
               <div className="d-flex gap-2">
-                <button className="btn btn-success ">Display</button>
+                <button className="btn btn-success" onClick={()=> displayQuiz(item.id)}>Display</button>
                 <button className="btn btn-primary px-4" 
                 onClick={()=> editQuiz(item.id)}>Edit</button>
               </div>

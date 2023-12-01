@@ -2,29 +2,31 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NavComp from "./core/navbar/Nav";
 import Home from "./pages/home/Home";
-import '../src/shared/styles/style.css'
+import "../src/shared/styles/style.css";
 import AddEditQuiz, { IAddEditQuiz } from "./pages/addEditQuiz/AddEditQuiz";
+import DisplayQuiz from "./pages/displayQuiz/DisplayQuiz";
 
 function App() {
   const additionalProps: IAddEditQuiz = {
     onSubmitForm: undefined,
     selectedQuiz: undefined,
-    children: undefined
+    children: undefined,
   };
   return (
     <Router>
       <NavComp />
       <div className="container container-wrapper">
         <Routes>
-          <Route index path="/" Component={Home}/>
+          <Route index path="/" Component={Home} />
           <Route
-          path="/quizzes"
-          element ={<AddEditQuiz  {...additionalProps} />}
-      />
-         <Route
-          path="/quizzes/:id"
-          element ={<AddEditQuiz  {...additionalProps} />}
-      />
+            path="/quizzes"
+            element={<AddEditQuiz {...additionalProps} />}
+          />
+          <Route
+            path="/quizzes/:id"
+            element={<AddEditQuiz {...additionalProps} />}
+          />
+          <Route path="/display/:id" element={<DisplayQuiz />} />
         </Routes>
       </div>
     </Router>

@@ -8,17 +8,24 @@ const Home: React.FC<IHomeProps> = () => {
   const [quizzes, setQuizzes] = useState([]);
   const navigte = useNavigate();
 
-  const fetchDataFromApi = async () => {
+  /**
+   * used to get the data from json file
+   */
+  const fetchData = async () => {
     const result = await getQuizzes();
     if (result) {
       setQuizzes(result);
     }
   };
+
+  /**
+   * used to navigate to the add page
+   */
   const addQuiz = ()=>{
     navigte('/quizzes');
   }
   useEffect(() => {
-    fetchDataFromApi();
+    fetchData();
   }, []);
 
   return (
