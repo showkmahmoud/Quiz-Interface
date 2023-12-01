@@ -78,7 +78,7 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
 
   return (
     <form className="px-4 py-2" onSubmit={onSubmit}>
-      <div className="quiz-info py-4 px-3">
+      <div className="main-card pt-2 pb-4 px-3">
         <div className="d-flex align-items-center">
           <p className="header main-header">
             {mode === AddEditMode.ADD ? "New Quiz" : `${AddEditMode.EDIT}`}

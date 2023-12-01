@@ -11,3 +11,10 @@
   .container-wrapper{
     margin-top: 75px;
   }
+  .main-card{
+    width: 95%;
+    background: #f8f8f8;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+  }
