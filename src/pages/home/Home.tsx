@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from "react";
+import QuizzesTable from "../../components/quizzes-table/QuizzesTable";
 
-const Home = () => {
+export interface IHomeProps {}
+const Home: React.FC<IHomeProps> = () => {
+  const [quizzes, setQuizzes] = useState([]);
   return (
-    <div>Home</div>
-  )
-}
+    <>
+      <QuizzesTable data={quizzes} />
+    </>
+  );
+};
 
-export default Home
+export default Home;

@@ -15,7 +15,10 @@ import styles from "./Nav.module.css";
 import { navBarItems } from "../../shared/static data/navbarItems";
 import { INavItem } from "../../shared/interfaces/navItem";
 
-const NavComp = () => {
+interface INavProps {
+}
+
+const NavComp : React.FC<INavProps> = () => {
   // declare the isOpen state to use with the toggle btn
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
