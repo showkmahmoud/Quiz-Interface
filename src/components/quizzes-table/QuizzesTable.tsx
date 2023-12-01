@@ -15,7 +15,7 @@ const QuizzesTable: React.FC<IQuizzesTableProps> = ({ data }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => (
+        {data && data.map((item) => (
           <tr key={item.id}>
             <th scope="row">{item.id}</th>
             <td>{item.title}</td>
