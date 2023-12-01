@@ -1,12 +1,18 @@
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import NavComp from "./core/navbar/Nav";
+import Home from "./pages/home/Home";
 
 function App() {
   return (
-    <>
-    <div className="container">
-    </div>
-
-    </>
+    <Router>
+      <NavComp />
+      <div className="container">
+        <Routes>
+          <Route path="/" Component={Home}/>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -1,0 +1,70 @@
+
+/* src/styles/colors.css */
+:root {
+    --primary-color: rgb(20 0 156);
+    --text: #070606;
+    /* Add more colors as needed */
+  }
+
+  a.global_link{
+    text-decoration: none;
+  }
+.nav_comp{
+    background-color: red !important;
+    position: fixed;
+    background: #fff;
+    right: 0;
+    top: 0;
+    left: 0;
+}
+.nav_items_wrapper{
+    gap: 30px;
+}
+a.logo{
+    display: inline-block;
+    text-align: center;
+    color: var(--primary-color);
+    padding: 16px 0;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 24px;
+}
+a.logo:after{
+    content: '';
+    background: var(--primary-color);
+    width: 40px;
+    height: 5px;
+    display: block;
+    border-radius: 25px;
+}
+.toggle_btn{
+    position: absolute;
+    right: 16px;
+    top: 25px;
+    z-index: 111;
+}
+.toggle_btn:focus{
+    outline: none;
+    border: none;
+}
+.nav_item a,.active a{
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+.active a:after{
+    content: '';
+    background: var(--primary-color);
+    width: 30px;
+    height: 5px;
+    display: block;
+    border-radius: 25px;
+    
+}
+.nav_item a{
+    color: #000;
+}
+.active a{
+    color: var(--primary-color);
+}
