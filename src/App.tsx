@@ -3,14 +3,29 @@ import "./App.css";
 import NavComp from "./core/navbar/Nav";
 import Home from "./pages/home/Home";
 import '../src/shared/styles/style.css'
+import AddEditQuiz, { IAddEditQuiz } from "./pages/addEditQuiz/AddEditQuiz";
 
 function App() {
+  const additionalProps: IAddEditQuiz = {
+    mode: undefined,
+    onSubmitForm: undefined,
+    selectedQuiz: undefined,
+    children: undefined
+  };
   return (
     <Router>
       <NavComp />
       <div className="container container-wrapper">
         <Routes>
-          <Route path="/" Component={Home}/>
+          <Route index path="/" Component={Home}/>
+          <Route
+          path="/quizzes"
+          element ={<AddEditQuiz  {...additionalProps} />}
+      />
+         <Route
+          path="/quizzes/:id"
+          element ={<AddEditQuiz  {...additionalProps} />}
+      />
         </Routes>
       </div>
     </Router>

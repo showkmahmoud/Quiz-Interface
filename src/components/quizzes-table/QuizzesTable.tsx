@@ -1,10 +1,15 @@
 import React from "react";
 import { Table } from "reactstrap";
 import './QuizzesTable.css'
+import { useNavigate } from "react-router-dom";
 interface IQuizzesTableProps {
   data: any[];
 }
 const QuizzesTable: React.FC<IQuizzesTableProps> = ({ data }) => {
+  const navigte = useNavigate();
+  const editQuiz = (id:number) =>{
+    navigte(`/quizzes/${id}`);
+  }
   return (
     <Table className="main-table" responsive striped>
       <thead>
@@ -15,7 +20,6 @@ const QuizzesTable: React.FC<IQuizzesTableProps> = ({ data }) => {
           <th>final score</th>
           <th>url</th>
           <th>action</th>
-
         </tr>
       </thead>
       <tbody>
@@ -31,7 +35,8 @@ const QuizzesTable: React.FC<IQuizzesTableProps> = ({ data }) => {
             <td className="action">
               <div className="d-flex gap-2">
                 <button className="btn btn-success ">Display</button>
-                <button className="btn btn-primary px-4">Edit</button>
+                <button className="btn btn-primary px-4" 
+                onClick={()=> editQuiz(item.id)}>Edit</button>
               </div>
             </td>
           </tr>
