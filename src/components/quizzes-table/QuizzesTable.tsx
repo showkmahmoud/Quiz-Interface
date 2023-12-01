@@ -6,20 +6,34 @@ interface IQuizzesTableProps {
 }
 const QuizzesTable: React.FC<IQuizzesTableProps> = ({ data }) => {
   return (
-    <Table responsive>
+    <Table className="main-table" responsive striped>
       <thead>
         <tr>
           <th>#</th>
-          <th>Title</th>
+          <th>Title</th> 
           <th>description</th>
+          <th>final score</th>
+          <th>url</th>
+          <th>action</th>
+
         </tr>
       </thead>
       <tbody>
-        {data && data.map((item) => (
+        {data && data.map((item,index) => (
           <tr key={item.id}>
-            <th scope="row">{item.id}</th>
+            <th scope="row">{index+1}</th>
             <td>{item.title}</td>
             <td>{item.description}</td>
+            <td>{item.score ? item.score : '-'}</td>
+            <td>
+              <a href={item.url} target="_blank">{item.url}</a>
+            </td>
+            <td className="action">
+              <div className="d-flex gap-2">
+                <button className="btn btn-success ">Display</button>
+                <button className="btn btn-primary px-4">Edit</button>
+              </div>
+            </td>
           </tr>
         ))}
       </tbody>
