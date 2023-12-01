@@ -1,0 +1,32 @@
+.quiz-info {
+  width: 95%;
+  background: #f8f8f8;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+}
+.question-block {
+  border-top: 1px solid var(--primary-color);
+}
+
+.header {
+  display: inline-block;
+  text-align: center;
+  color: var(--primary-color);
+  padding: 16px 0;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
+}
+.header:after {
+  content: "";
+  background: var(--primary-color);
+  width: 40px;
+  height: 5px;
+  display: block;
+  border-radius: 25px;
+}
+.main-header{
+    font-size: 21px;
+}

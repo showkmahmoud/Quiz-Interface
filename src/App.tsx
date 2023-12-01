@@ -7,7 +7,6 @@ import AddEditQuiz, { IAddEditQuiz } from "./pages/addEditQuiz/AddEditQuiz";
 
 function App() {
   const additionalProps: IAddEditQuiz = {
-    mode: undefined,
     onSubmitForm: undefined,
     selectedQuiz: undefined,
     children: undefined
