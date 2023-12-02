@@ -64,7 +64,19 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
     }));
   };
 
-  const handleFormDataChange = (e: ChangeEvent<HTMLInputElement>) => {};
+  const handleFormDataChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (mode === AddEditMode.ADD) {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      });
+    }
+  };
   const onSubmit = (e: any) => {
     e.preventDefault();
     console.log(formData);
@@ -167,7 +179,7 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
                         }
                       />
                     </FormGroup>
-                    {qa.answers.map((answer: any, answerIndex: number) => (
+                    {qa.answers && qa.answers.map((answer: any, answerIndex: number) => (
                       <div key={answerIndex}>
                         <FormGroup>
                           <Label>Answer {answerIndex + 1}</Label>
