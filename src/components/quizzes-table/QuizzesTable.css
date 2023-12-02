@@ -1,0 +1,6 @@
+.desc{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width:350px; /* some width */
+}

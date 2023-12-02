@@ -5,7 +5,7 @@ export interface IAnswer {
 }
 export interface IQuestion {
   id?: number;
-  answer_id: number;
+  answer_id: number | null;
   answers: IAnswer[];
   feedback_false: string;
   feedback_true: string;
