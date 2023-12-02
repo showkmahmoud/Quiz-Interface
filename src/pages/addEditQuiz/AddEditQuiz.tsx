@@ -1,9 +1,11 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import { FormGroup, Input, Label } from "reactstrap";
 import "./AddEditQuiz.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { AddEditMode } from "../../shared/enums/addEditMode";
 import { IAnswer, IQuestion } from "../../shared/interfaces/questuinsAnswers";
+import { IQuiz } from "../../shared/interfaces/quiz";
+import { getQuizzes } from "../../shared/functions/getQuizzes";
 export interface IAddEditQuiz {
   onSubmitForm: any;
   selectedQuiz: any;
@@ -11,23 +13,25 @@ export interface IAddEditQuiz {
 }
 const AddEditQuiz: React.FC<IAddEditQuiz> = ({
   onSubmitForm,
-  selectedQuiz,
   children,
 }) => {
-  const getInitialValue = () => {
+  const getInitialValue  = (): IQuiz => {
     return {
       title: "",
       url: "",
       description: "",
       score: 0,
-      questionsAnswers: [],
+      questions_answers: [],
+      created:'',
+      modified:''
     };
   };
   const [mode, setMode] = useState(AddEditMode.ADD);
-  const [formData, setFormData] = useState(getInitialValue());
+  const [formData, setFormData] = useState<IQuiz>( getInitialValue());
   const [state, setState] = useState(true);
-  const { title, description, score, url, questionsAnswers = [] } = formData;
+  const { title, description, score, url, questions_answers = [] } = formData;
   const location = useLocation();
+  const { id }  = useParams();
 
   const handleAnswerChange = (
     questionIndex: number,
@@ -35,12 +39,10 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
     value: string | boolean,
     field:string
   ) => {
-    console.log(value)
     setFormData((prevFormData: any) => {
-      const updatedQuestionsAnswers = [...prevFormData.questionsAnswers];
+      const updatedQuestionsAnswers = [...prevFormData.questions_answers];
       updatedQuestionsAnswers[questionIndex].answers[answerIndex][field] = value;
-      console.log(updatedQuestionsAnswers);
-      return { ...prevFormData, questionsAnswers: updatedQuestionsAnswers };
+      return { ...prevFormData, questions_answers: updatedQuestionsAnswers };
     });
   };
 
@@ -51,7 +53,7 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
   ) => {
     setFormData((prevFormData: any) => ({
       ...prevFormData,
-      questionsAnswers: prevFormData.questionsAnswers.map(
+      questions_answers: prevFormData.questions_answers.map(
         (item: any, itemIndex: number) =>
           itemIndex === index ? { ...item, [field]: value } : item
       ),
@@ -59,14 +61,13 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
   };
   const addAnswer = (questionIndex: number) => {
     setFormData((prevFormData: any) => {
-      const updatedQuestionsAnswers = [...prevFormData.questionsAnswers];
-      console.log(updatedQuestionsAnswers);
+      const updatedQuestionsAnswers = [...prevFormData.questions_answers];
       updatedQuestionsAnswers[questionIndex].answers.push({
         text: "",
         is_true: state,
       });
 
-      return { ...prevFormData, questionsAnswers: updatedQuestionsAnswers };
+      return { ...prevFormData, questions_answers: updatedQuestionsAnswers };
     });
   };
   const addQuestion = () => {
@@ -79,7 +80,7 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
     };
     setFormData((prevFormData: any) => ({
       ...prevFormData,
-      questionsAnswers: [...prevFormData.questionsAnswers, newQuestion],
+      questions_answers: [...prevFormData.questions_answers, newQuestion],
     }));
   };
 
@@ -101,10 +102,22 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
     // console.log(formData);
     // onSubmitForm(formData);
   };
+  const handleSelectedQuiz = async () => {
+    const data: IQuiz[] = await getQuizzes();
+    const quizData: IQuiz | undefined = data.find(
+      (item: any) => item.id === Number(id)
+    );
+    if(quizData ){
+      setFormData(quizData )
+    }
+  };
   useEffect(() => {
     setMode(
       location.pathname === "/quizzes" ? AddEditMode.ADD : AddEditMode.EDIT
     );
+    if(id){
+      handleSelectedQuiz()
+    }
   }, []);
 
   return (
@@ -179,8 +192,8 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
       </div>
       <div className="questions-data">
         <div className="questions">
-          {questionsAnswers &&
-            questionsAnswers.map((qa: IQuestion, questionIndex: number) => (
+          {questions_answers &&
+            questions_answers.map((qa: IQuestion, questionIndex: number) => (
               <div className="question-block" key={questionIndex}>
                 <p className="header"> Question {questionIndex + 1}</p>
                 <div>
@@ -264,7 +277,7 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
                     </div>
                   ))}
                   <button
-                    className="btn"
+                    className="btn btn-secondary d-block ms-auto"
                     onClick={() => addAnswer(questionIndex)}
                   >
                     Add Answer
@@ -274,7 +287,7 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
             ))}
         </div>
       </div>
-      <button className="d-block btn btn-success ms-auto mt-2 " type="submit">
+      <button className="d-block btn btn-success ms-auto mt-2 px-5" type="submit">
         submit
       </button>
     </form>
