@@ -33,7 +33,7 @@ const QuizzesTable: React.FC<IQuizzesTableProps> = ({ data }) => {
             <td>{item.description}</td>
             <td>{item.score ? item.score : '-'}</td>
             <td>
-              <a href={item.url} target="_blank">{item.url}</a>
+              <a href={item.url} target="blank">{item.url}</a>
             </td>
             <td className="action">
               <div className="d-flex gap-2">
