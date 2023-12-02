@@ -277,7 +277,7 @@ const AddEditQuiz: React.FC<IAddEditQuiz> = ({
                     </div>
                   ))}
                   <button
-                    className="btn btn-secondary d-block ms-auto"
+                    className="btn btn-secondary d-block ms-auto mb-2"
                     onClick={() => addAnswer(questionIndex)}
                   >
                     Add Answer
